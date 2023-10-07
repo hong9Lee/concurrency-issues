@@ -61,7 +61,7 @@ class StockServiceTest {
 
         Stock stock = stockRepository.findById(1L).orElseThrow();
         assertEquals(0, stock.getQuantity());
-        // 둘 이상의 쓰레드가 동시에 접근하여 문제 발생. Race contition
+        // 둘 이상의 쓰레드가 동시에 접근하여 문제 발생. (Race condition)
 
     }
 
