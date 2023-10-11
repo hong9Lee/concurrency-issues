@@ -19,6 +19,10 @@ class StockServiceTest {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
+    private PessimisticLockStockService pessimisticLockStockService;
+
     @Autowired
     private StockRepository stockRepository;
 
@@ -50,7 +54,8 @@ class StockServiceTest {
         for (int i = 0; i < threadCount; i++) {
             executorService.submit(() -> {
                 try {
-                    stockService.decrease(1L, 1L);
+//                    stockService.decrease(1L, 1L);
+                    pessimisticLockStockService.decrease(1L, 1L);
                 } finally {
                     latch.countDown();
                 }
